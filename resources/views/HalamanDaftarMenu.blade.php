@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.main')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Halaman Daftar Menu</title>
-</head>
-
-<body>
-    <h1>Halaman Daftar Menu</h1>
-</body>
-
-</html>
+@section('container')
+    {{-- @unless($menus->isEmpty()) --}}
+    @foreach ($menus as $menu)
+        <h5>
+            <a href="/daftarMenu/{{ $menu['slug'] }}">{{ $menu['nama'] }}</a>
+        </h5>
+        {{-- <h5>{{ $menu['nama'] }}</h5> --}}
+        <h5>{{ $menu['harga'] }}</h5>
+        <h5>{{ $menu['stok'] }}</h5>
+        <img src={{ $menu['image'] }} alt={{ $menu['nama'] }}>
+    @endforeach=
+@endsection

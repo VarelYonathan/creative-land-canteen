@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Gerai;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PembeliController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    // return view('welcome');
     return view('HalamanUtamaPembeli');
 });
+
+
+Route::get('/daftarMenu', [PembeliController::class, 'index']);
+
+Route::get('daftarMenu/{slug}', [PembeliController::class, 'showMenu']);
