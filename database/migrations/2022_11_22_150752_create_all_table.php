@@ -21,7 +21,7 @@ return new class extends Migration
             $table->increments('idPenjual');
             $table->string('username', 30);
             $table->string('password', 30);
-            $table->integer('gerai')->unsigned();
+            // $table->integer('gerai')->unsigned();
         });
         Schema::create('gerai', function (Blueprint $table) {
             $table->increments('idGerai');
@@ -48,7 +48,7 @@ return new class extends Migration
         });
         Schema::create('daftarpesanan', function (Blueprint $table) {
             $table->increments('idDaftarPesanan');
-            $table->double('totalHarga');
+            $table->double('totalHarga')->default(0);
             $table->integer('gerai')->unsigned();
             $table->date('tanggalPemesanan');
             $table->integer('invoice')->unsigned();
@@ -66,7 +66,7 @@ return new class extends Migration
         Schema::create('laporan', function (Blueprint $table) {
             $table->increments('idLaporan');
             $table->integer('kasir')->unsigned();
-            $table->double('total');
+            $table->double('total')->default(0);
         });
     }
 

@@ -36,9 +36,9 @@ return new class extends Migration
             $table->foreign('gerai')->references('idGerai')->on('gerai');
         });
 
-        Schema::table('penjual', function (Blueprint $table) {
-            $table->foreign('gerai')->references('idGerai')->on('gerai');
-        });
+        // Schema::table('penjual', function (Blueprint $table) {
+        //     $table->foreign('gerai')->references('idGerai')->on('gerai');
+        // });
 
         Schema::table('pesanan', function (Blueprint $table) {
             $table->foreign('daftarPesanan')->references('idDaftarPesanan')->on('daftarpesanan');
