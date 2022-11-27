@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Gerai;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Models\Menu;
 
 class PembeliController extends Controller
 {
@@ -14,15 +14,16 @@ class PembeliController extends Controller
     {
         return view('HalamanDaftarMenu', [
             "title" => "Halaman Daftar Menu",
-            "menus" => Gerai::getall()
+            "menus" => Menu::all()
         ]);
     }
 
-    public function showMenu($slug)
+    public function showMenu(Menu $menu)
     {
         return view('HalamanMenu', [
             "title" => "Halaman Menu",
-            "menu" => Gerai::find($slug)
+            // "menu" => Gerai::find($id)
+            "menu" => $menu
         ]);
     }
 }
