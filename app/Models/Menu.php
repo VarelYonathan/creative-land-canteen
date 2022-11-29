@@ -10,6 +10,7 @@ class Menu extends Model
     use HasFactory;
 
     protected $table = "menu";
+    public $timestamps = false;
 
     protected $fillable = [
         'idMenu', 'namaMenu', 'stokMenu', 'hargaMenu', 'gerai'

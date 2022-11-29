@@ -10,6 +10,7 @@ class Kasir extends Model
     use HasFactory;
 
     protected $table = "kasir";
+    public $timestamps = false;
 
     protected $fillable = [
         'idKasir', 'username', 'password'

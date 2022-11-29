@@ -10,6 +10,7 @@ class Invoice extends Model
     use HasFactory;
 
     protected $table = "invoice";
+    public $timestamps = false;
 
     protected $fillable = [
         'idInvoice', 'idPembeli', 'idKasir', 'idPenjual'

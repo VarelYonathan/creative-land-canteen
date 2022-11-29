@@ -4,11 +4,10 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Penjual>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Gerai>
  */
-class PenjualFactory extends Factory
+class GeraiFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,8 +17,8 @@ class PenjualFactory extends Factory
     public function definition()
     {
         return [
-            'username' => fake()->name(),
-            'password' => '12345'
+            'namaGerai' => fake()->numerify('gerai-#'),
+            'penjual' => mt_rand(1, 2)
         ];
     }
 }

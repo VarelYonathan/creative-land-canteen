@@ -26,6 +26,7 @@ class Gerai extends Model
     // ];
 
     protected $table = "gerai";
+    public $timestamps = false;
 
     protected $fillable = [
         'idGerai', 'namaGerai', 'penjual'

@@ -22,4 +22,4 @@ Route::get('/', function () {
 
 Route::get('/daftarMenu', [PembeliController::class, 'index']);
 
-Route::get('daftarMenu/{menu}', [PembeliController::class, 'showMenu']);
+Route::get('daftarMenu/{menu:idMenu}', [PembeliController::class, 'showMenu']);
