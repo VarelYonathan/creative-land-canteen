@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Controllers\KasirController;
+use App\Http\Controllers\LoginController;
 use App\Models\Gerai;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PembeliController;
+use App\Http\Controllers\PenjualController;
+use App\Models\Penjual;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +20,26 @@ use App\Http\Controllers\PembeliController;
 */
 
 Route::get('/', function () {
-    return view('HalamanUtamaPembeli');
+    return view('HalamanAwal', [
+        'title' => "Halaman Awal"
+    ]);
 });
 
 
-Route::get('/daftarMenu', [PembeliController::class, 'index']);
+Route::get('/Gerai', [PembeliController::class, 'index']);
+Route::get('Gerai/{menu:idMenu}', [PembeliController::class, 'showMenu']);
 
-Route::get('daftarMenu/{menu:idMenu}', [PembeliController::class, 'showMenu']);
+Route::get('/HalamanUtamaPembeli', [LoginController::class, 'loginAsGuest']);
+Route::get('/LoginPenjual', [LoginController::class, 'showLoginAsPenjual']);
+Route::get('/LoginKasir', [LoginController::class, 'showLoginAsKasir']);
+
+Route::post('/Login/penjual', [LoginController::class, 'loginAsPenjual']);
+Route::post('/Login/kasir', [LoginController::class, 'loginAsKasir']);
+
+Route::get('/HalamanUtamaPenjual', [PenjualController::class, 'showHalamanUtamaPenjual']);
+Route::get('/HalamanUtamaKasir', [KasirController::class, 'showHalamanUtamaKasir']);
+
+Route::post('/Login', [LoginController::class, 'index']);
+
+Route::get('/HalamanUtamaPembeli/{gerai:idGerai}', [PembeliController::class, 'showDaftarMenu']);
+Route::get('/{gerai:idGerai}/{menu:idMenu}', [PembeliController::class, 'showHalaman']);

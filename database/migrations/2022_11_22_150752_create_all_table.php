@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('pembeli', function (Blueprint $table) {
             $table->increments('idPembeli');
+            $table->string('namaPembeli')->nullable();
             $table->integer('nomorMeja');
         });
         Schema::create('penjual', function (Blueprint $table) {

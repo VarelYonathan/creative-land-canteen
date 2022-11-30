@@ -17,6 +17,7 @@ class PembeliFactory extends Factory
     public function definition()
     {
         return [
+            'namaPembeli' => fake()->name(),
             'nomorMeja' => fake()->randomNumber(2, false)
         ];
     }

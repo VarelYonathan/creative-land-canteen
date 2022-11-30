@@ -14,7 +14,8 @@ class PembeliController extends Controller
     {
         return view('HalamanDaftarMenu', [
             "title" => "Halaman Daftar Menu",
-            "menus" => Menu::all()
+            "menus" => Menu::get(),
+            "image" => "makanan.jpeg"
         ]);
     }
 
@@ -23,7 +24,17 @@ class PembeliController extends Controller
         return view('HalamanMenu', [
             "title" => "Halaman Menu",
             // "menu" => Gerai::find($id)
-            "menu" => $menu
+            "menu" => $menu,
+            "image" => "makanan.jpeg"
+        ]);
+    }
+
+    public function showDaftarMenu(Gerai $gerai)
+    {
+        return view('HalamanDaftarMenu', [
+            "title" => "Halaman Daftar Menu",
+            "menus" => Menu::where('gerai', $gerai->idGerai)->get(),
+            "image" => "makanan.jpeg"
         ]);
     }
 }

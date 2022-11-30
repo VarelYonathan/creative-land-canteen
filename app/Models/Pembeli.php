@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Database\Factories\PembeliFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Pembeli extends Model
+class Pembeli extends Authenticatable
 {
     use HasFactory;
     public $timestamps = false;
@@ -16,9 +16,13 @@ class Pembeli extends Model
     protected $fillable = [
         'idPembeli', 'nomorMeja'
     ];
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 
     public function daftarPesanan()
     {
-        return $this->hasOne(DaftarPesanan::class, 'idPembeli', 'pembeli');
+        return $this->hasMany(DaftarPesanan::class, 'idPembeli', 'pembeli');
     }
 }
