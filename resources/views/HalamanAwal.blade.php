@@ -2,6 +2,7 @@
 
 @section('container')
     <h5>
+        {{-- <a href="/LoginPenjual">Login as Penjual</a> --}}
         <a href="/LoginPenjual">Login as Penjual</a>
     </h5>
     <h5>

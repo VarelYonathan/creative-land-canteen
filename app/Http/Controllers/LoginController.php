@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gerai;
+use App\Models\Penjual;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,8 +11,8 @@ class LoginController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('guest:penjual')->except('logout');
-        $this->middleware('guest:kasir')->except('logout');
+        // $this->middleware('guest:penjual')->except('logout');
+        // $this->middleware('guest:kasir')->except('logout');
     }
     public function showLoginAsPenjual()
     {
@@ -37,25 +38,21 @@ class LoginController extends Controller
 
     public function loginAsPenjual(Request $request)
     {
-        $creadentials = $request->validate([
-            'username' => 'required',
+        $credentials = $request->validate([
+            'email' => 'required|email:dns',
+            // 'username' => 'required',
             'password' => 'required'
         ]);
-        if (Auth::guard('penjual')->attempt($creadentials)) {
+        // if (Auth::guard('penjual')->attempt($credentials)) {
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended('/HalamanUtamaPenjual');
         }
-        // if (Auth::guard('penjual')->attempt(
-        //     [
-        //         'username' => $request->username,
-        //         'password' => $request->password
-        //     ],
-        //     $request->get('remember')
-        // )) {
-
-        //     return redirect()->intended('/HalamanUtamaPenjual');
-        // }
-        return back()->with('loginError', 'Login Failed!');
+        echo "";
+        // $shit = $credentials['username'];
+        $shit = $credentials['email'];
+        $sh = $credentials['password'];
+        return back()->with('loginError', "Login Failed! $shit $sh");
 
         dd('berhasil login!');
     }

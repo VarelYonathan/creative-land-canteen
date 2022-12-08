@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;use app\Models\Gerai;
+use App\Models\User;
 use App\Models\DaftarPesanan;
 use App\Models\Gerai;
 use App\Models\Invoice;
@@ -29,6 +30,7 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        User::factory(3)->create();
         Pembeli::factory(4)->create();
         Penjual::factory(2)->create();
         Kasir::factory(2)->create();

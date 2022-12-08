@@ -33,13 +33,14 @@ Route::get('/HalamanUtamaPembeli', [LoginController::class, 'loginAsGuest']);
 Route::get('/LoginPenjual', [LoginController::class, 'showLoginAsPenjual']);
 Route::get('/LoginKasir', [LoginController::class, 'showLoginAsKasir']);
 
+Route::post('/Login', [LoginController::class, 'loginAsPenjual']);
 Route::post('/Login/penjual', [LoginController::class, 'loginAsPenjual']);
 Route::post('/Login/kasir', [LoginController::class, 'loginAsKasir']);
 
 Route::get('/HalamanUtamaPenjual', [PenjualController::class, 'showHalamanUtamaPenjual']);
 Route::get('/HalamanUtamaKasir', [KasirController::class, 'showHalamanUtamaKasir']);
 
-Route::post('/Login', [LoginController::class, 'index']);
+// Route::post('/Login', [LoginController::class, 'index']);
 
 Route::get('/HalamanUtamaPembeli/{gerai:idGerai}', [PembeliController::class, 'showDaftarMenu']);
 Route::get('/{gerai:idGerai}/{menu:idMenu}', [PembeliController::class, 'showHalaman']);

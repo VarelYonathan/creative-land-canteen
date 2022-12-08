@@ -40,14 +40,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'penjual' => [
-            'driver' => 'session',
-            'provider' => 'penjual',
-        ],
-        'kasir' => [
-            'driver' => 'session',
-            'provider' => 'kasir',
-        ],
+        // 'penjual' => [
+        //     'driver' => 'session',
+        //     'provider' => 'penjuals',
+        // ],
+        // 'kasir' => [
+        //     'driver' => 'session',
+        //     'provider' => 'kasirs',
+        // ],
     ],
 
     /*
@@ -72,14 +72,14 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-        'penjual' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Penjual::class,
-        ],
-        'kasir' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Kasir::class,
-        ],
+        // 'penjuals' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\Penjual::class,
+        // ],
+        // 'kasirs' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\Kasir::class,
+        // ],
 
         // 'users' => [
         //     'driver' => 'database',
@@ -105,6 +105,18 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'penjuals' => [
+            'provider' => 'penjuals',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'kasirs' => [
+            'provider' => 'kasirs',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
