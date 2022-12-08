@@ -14,6 +14,9 @@ use App\Models\Penjual;
 use App\Models\Pembeli;
 use App\Models\Pesanan;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -30,10 +33,37 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        DB::table('users')->insert([
+            'name' => Str::random(10),
+            'email' => Str::random(10) . '@gmail.com',
+            'password' => Hash::make('password'),
+        ]);
+        DB::table('kasir')->insert([
+            'username' => 'kasir1',
+            'namaKasir' => 'Kasir 1',
+            'password' => Hash::make('password'),
+        ]);
+        DB::table('kasir')->insert([
+            'username' => 'kasir2',
+            'namaKasir' => 'Kasir 2',
+            'password' => Hash::make('password'),
+        ]);
+        DB::table('penjual')->insert([
+            'username' => 'penjual1',
+            'namaPenjual' => 'Penjual 2',
+            'password' => Hash::make('password'),
+        ]);
+        DB::table('penjual')->insert([
+            'username' => 'penjual2',
+            'namaPenjual' => 'Penjual 2',
+            'password' => Hash::make('password'),
+        ]);
+
         User::factory(3)->create();
         Pembeli::factory(4)->create();
-        Penjual::factory(2)->create();
-        Kasir::factory(2)->create();
+        // Penjual::factory(2)->create();
+        // Kasir::factory(2)->create();
         laporan::factory(1)->create();
         Invoice::factory(4)->create();
         Gerai::factory(2)->create();

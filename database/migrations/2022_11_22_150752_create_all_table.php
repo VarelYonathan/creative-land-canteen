@@ -20,8 +20,9 @@ return new class extends Migration
         });
         Schema::create('penjual', function (Blueprint $table) {
             $table->increments('idPenjual');
-            $table->string('username', 30);
-            $table->string('password', 30);
+            $table->string('username', 30)->unique();
+            $table->string('namaPenjual', 30);
+            $table->string('password');
             // $table->integer('gerai')->unsigned();
         });
         Schema::create('gerai', function (Blueprint $table) {
@@ -38,8 +39,9 @@ return new class extends Migration
         });
         Schema::create('kasir', function (Blueprint $table) {
             $table->increments('idKasir');
-            $table->string('username', 30);
-            $table->string('password', 30);
+            $table->string('username', 30)->unique();
+            $table->string('namaKasir', 30);
+            $table->string('password');
         });
         Schema::create('invoice', function (Blueprint $table) {
             $table->increments('idInvoice');

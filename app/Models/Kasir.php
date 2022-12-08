@@ -13,7 +13,11 @@ class Kasir extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'idKasir', 'username', 'password'
+        'idKasir', 'username', 'namaKasir', 'password'
+    ];
+    protected $hidden = [
+        'password',
+        'remember_token',
     ];
 
     public function daftarPesanan()

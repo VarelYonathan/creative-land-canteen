@@ -25,7 +25,7 @@ class LoginController extends Controller
     {
         return view('HalamanLogin', [
             'title' => "Halaman Login",
-            'url' => "pembeli"
+            'url' => "kasir"
         ]);
     }
     public function loginAsGuest()
@@ -39,43 +39,29 @@ class LoginController extends Controller
     public function loginAsPenjual(Request $request)
     {
         $credentials = $request->validate([
-            'email' => 'required|email:dns',
-            // 'username' => 'required',
+            // 'email' => 'required|email:dns',
+            'username' => 'required',
             'password' => 'required'
         ]);
-        // if (Auth::guard('penjual')->attempt($credentials)) {
-        if (Auth::attempt($credentials)) {
+        if (Auth::guard('penjual')->attempt($credentials)) {
+            // if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended('/HalamanUtamaPenjual');
         }
-        echo "";
-        // $shit = $credentials['username'];
-        $shit = $credentials['email'];
-        $sh = $credentials['password'];
-        return back()->with('loginError', "Login Failed! $shit $sh");
+        return back()->with('loginError', "Login Failed!");
 
         dd('berhasil login!');
     }
     public function loginAsKasir(Request $request)
     {
-        $creadentials = $request->validate([
+        $credentials = $request->validate([
             'username' => 'required',
             'password' => 'required'
         ]);
-        if (Auth::guard('kasir')->attempt($creadentials)) {
+        if (Auth::guard('kasir')->attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended('/HalamanUtamaKasir');
         }
-        // if (Auth::guard('kasir')->attempt(
-        //     [
-        //         'username' => $request->username,
-        //         'password' => $request->password
-        //     ],
-        //     $request->get('remember')
-        // )) {
-
-        //     return redirect()->intended('/HalamanUtamaKasir');
-        // }
         return back()->with('loginError', 'Login Failed!');
 
         dd('berhasil login!');

@@ -13,7 +13,7 @@ class Penjual extends Authenticatable
     protected $table = "penjual";
 
     protected $fillable = [
-        'idPenjual', 'username', 'password'
+        'idPenjual', 'username', 'namaPenjual', 'password'
     ];
     protected $hidden = [
         'password',

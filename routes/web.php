@@ -24,7 +24,11 @@ Route::get('/', function () {
         'title' => "Halaman Awal"
     ]);
 });
-
+Route::Post('/', function () {
+    return view('HalamanAwal', [
+        'title' => "Halaman Awal"
+    ]);
+});
 
 Route::get('/Gerai', [PembeliController::class, 'index']);
 Route::get('Gerai/{menu:idMenu}', [PembeliController::class, 'showMenu']);

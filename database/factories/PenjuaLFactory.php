@@ -19,6 +19,7 @@ class PenjualFactory extends Factory
     {
         return [
             'username' => fake()->name(),
+            'namaPenjual' => fake()->name(),
             'password' => '12345'
         ];
     }

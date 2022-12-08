@@ -18,6 +18,7 @@ class KasirFactory extends Factory
     {
         return [
             'username' =>    fake()->name(),
+            'namaKasir' => fake()->name(),
             'password' => '12345'
         ];
     }

@@ -40,14 +40,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        // 'penjual' => [
-        //     'driver' => 'session',
-        //     'provider' => 'penjuals',
-        // ],
-        // 'kasir' => [
-        //     'driver' => 'session',
-        //     'provider' => 'kasirs',
-        // ],
+        'penjual' => [
+            'driver' => 'session',
+            'provider' => 'penjuals',
+        ],
+        'kasir' => [
+            'driver' => 'session',
+            'provider' => 'kasirs',
+        ],
     ],
 
     /*
@@ -72,14 +72,14 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-        // 'penjuals' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\Models\Penjual::class,
-        // ],
-        // 'kasirs' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\Models\Kasir::class,
-        // ],
+        'penjuals' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Penjual::class,
+        ],
+        'kasirs' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Kasir::class,
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
