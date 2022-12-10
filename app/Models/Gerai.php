@@ -27,11 +27,10 @@ class Gerai extends Model
 
     protected $table = "gerai";
     public $timestamps = false;
-    protected $primarykey = 'idGerai';
-    public $incrementing = true;
+    // protected $primarykey = 'idGerai';
 
     protected $fillable = [
-        'idGerai', 'namaGerai', 'penjual'
+        'id', 'namaGerai', 'penjual'
     ];
 
     public function penjual()

@@ -10,13 +10,12 @@ class Pembeli extends Authenticatable
 {
     use HasFactory;
     public $timestamps = false;
-    protected $primarykey = 'idPembeli';
-    public $incrementing = true;
+    // protected $primarykey = 'idPembeli';
 
     protected $table = "pembeli";
 
     protected $fillable = [
-        'idPembeli', 'nomorMeja'
+        'id', 'nomorMeja'
     ];
     protected $hidden = [
         'password',
@@ -25,6 +24,7 @@ class Pembeli extends Authenticatable
 
     public function daftarPesanan()
     {
-        return $this->hasMany(DaftarPesanan::class, 'idPembeli', 'pembeli');
+        // return $this->hasMany(DaftarPesanan::class, 'idPembeli', 'pembeli');
+        return $this->hasMany(DaftarPesanan::class, 'pembeli');
     }
 }

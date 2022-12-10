@@ -14,26 +14,26 @@ return new class extends Migration
     public function up()
     {
         Schema::table('daftarpesanan', function (Blueprint $table) {
-            $table->foreign('invoice')->references('idInvoice')->on('invoice');
-            $table->foreign('kasir')->references('idKasir')->on('kasir');
+            $table->foreign('invoice')->references('id')->on('invoice')->onDelete('cascade');
+            $table->foreign('kasir')->references('id')->on('kasir')->onDelete('cascade');
         });
 
         Schema::table('gerai', function (Blueprint $table) {
-            $table->foreign('penjual')->references('idPenjual')->on('penjual');
+            $table->foreign('penjual')->references('id')->on('penjual')->onDelete('cascade');
         });
 
         Schema::table('invoice', function (Blueprint $table) {
-            $table->foreign('idKasir')->references('idKasir')->on('kasir');
-            $table->foreign('idPembeli')->references('idPembeli')->on('pembeli');
-            $table->foreign('idPenjual')->references('idPenjual')->on('penjual');
+            $table->foreign('idKasir')->references('id')->on('kasir')->onDelete('cascade');
+            $table->foreign('idPembeli')->references('id')->on('pembeli')->onDelete('cascade');
+            $table->foreign('idPenjual')->references('id')->on('penjual')->onDelete('cascade');
         });
 
         Schema::table('laporan', function (Blueprint $table) {
-            $table->foreign('kasir')->references('idKasir')->on('kasir');
+            $table->foreign('kasir')->references('id')->on('kasir')->onDelete('cascade');
         });
 
         Schema::table('menu', function (Blueprint $table) {
-            $table->foreign('gerai')->references('idGerai')->on('gerai');
+            $table->foreign('gerai')->references('id')->on('gerai')->onDelete('cascade');
         });
 
         // Schema::table('penjual', function (Blueprint $table) {
@@ -41,8 +41,8 @@ return new class extends Migration
         // });
 
         Schema::table('pesanan', function (Blueprint $table) {
-            $table->foreign('daftarPesanan')->references('idDaftarPesanan')->on('daftarpesanan');
-            $table->foreign('pesanan')->references('idMenu')->on('menu');
+            $table->foreign('daftarPesanan')->references('id')->on('daftarpesanan')->onDelete('cascade');
+            $table->foreign('pesanan')->references('id')->on('menu')->onDelete('cascade');
         });
     }
 

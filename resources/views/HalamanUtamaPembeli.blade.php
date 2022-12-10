@@ -5,7 +5,8 @@
     <h3>Halaman Utama Pembeli</h3>
     @foreach ($gerai as $ger)
         <h5>
-            <a href="/HalamanUtamaPembeli/{{ $ger->idGerai }}">{{ $ger->namaGerai }}</a>
+            {{-- <a href="/HalamanUtamaPembeli/{{ $ger->idGerai }}">{{ $ger->namaGerai }}</a> --}}
+            <a href="/HalamanUtamaPembeli/{{ $ger->id }}">{{ $ger->namaGerai }}</a>
         </h5>
     @endforeach=
 @endsection

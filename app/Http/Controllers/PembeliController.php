@@ -33,7 +33,8 @@ class PembeliController extends Controller
     {
         return view('HalamanDaftarMenu', [
             "title" => "Halaman Daftar Menu",
-            "menus" => Menu::where('gerai', $gerai->idGerai)->get(),
+            // "menus" => Menu::where('gerai', $gerai->idGerai)->get(),
+            "menus" => Menu::where('gerai', $gerai->id)->get(),
             "image" => "makanan.jpeg"
         ]);
     }

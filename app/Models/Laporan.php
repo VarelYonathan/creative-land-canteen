@@ -12,11 +12,10 @@ class Laporan extends Model
 
     protected $table = "laporan";
     public $timestamps = false;
-    protected $primarykey = 'idLaporan';
-    public $incrementing = true;
+    // protected $primarykey = 'idLaporan';
 
     protected $fillable = [
-        'idLaporan', 'kasir', 'total'
+        'id', 'kasir', 'total'
     ];
 
     public function kasir()

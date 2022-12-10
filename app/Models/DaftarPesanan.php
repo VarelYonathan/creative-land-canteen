@@ -10,16 +10,16 @@ class DaftarPesanan extends Model
     use HasFactory;
 
     protected $table = "daftarpesanan";
-    protected $primarykey = 'idDaftarPesanan';
+    // protected $primarykey = 'idDaftarPesanan';
     public $timestamps = false;
-    public $incrementing = true;
     protected $fillable = [
-        'idDaftarPesanan', 'totalHarga', 'gerai', 'tanggalPemesanan', 'invoice', 'statusPembayaran', 'pembeli', 'kasir'
+        'id', 'totalHarga', 'gerai', 'tanggalPemesanan', 'invoice', 'statusPembayaran', 'pembeli', 'kasir'
     ];
 
     public function pesanan()
     {
-        return $this->hasMany(Pesanan::class, 'idDaftarPesanan', 'daftarPesanan');
+        // return $this->hasMany(Pesanan::class, 'idDaftarPesanan', 'daftarPesanan');
+        return $this->hasMany(Pesanan::class, 'daftarPesanan');
     }
 
     public function gerai()

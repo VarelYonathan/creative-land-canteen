@@ -12,11 +12,22 @@ class PenjualController extends Controller
 {
     public function showHalamanUtamaPenjual(Penjual $penjual, Request $request)
     {
-        $gerai = Gerai::where('penjual', $penjual->idPenjual)->get();
+        // $gerai = Gerai::where('penjual', $penjual->idPenjual)->get();
+        // $menu = [];
+        // $i = 0;
+        // foreach ($gerai as $g) {
+        //     $m = Menu::where('gerai', $gerai[$i]->idGerai)->get();
+        //     ++$i;
+        //     foreach ($m as $me) {
+        //         $menu[] = $me;
+        //     }
+        // }
+
+        $gerai = Gerai::where('penjual', $penjual->id)->get();
         $menu = [];
         $i = 0;
         foreach ($gerai as $g) {
-            $m = Menu::where('gerai', $gerai[$i]->idGerai)->get();
+            $m = Menu::where('gerai', $gerai[$i]->id)->get();
             ++$i;
             foreach ($m as $me) {
                 $menu[] = $me;
@@ -36,7 +47,7 @@ class PenjualController extends Controller
         $gerai = $request->session()->get('gerai');
         return view('HalamanTambahMenu', [
             'title' => "Halaman Tambah Menu",
-            'gerai' => $gerai[0]->idGerai
+            'gerai' => $gerai[0]->id
         ]);
     }
 
@@ -70,21 +81,36 @@ class PenjualController extends Controller
         DB::table('menu')->insert($data);
         $user = $request->session()->get('user');
         $username = $user[0]->username;
-        echo "Record inserted successfully.<br/>";
-        echo "<a href = '/HalamanUtamaPenjual/$username'>Click Here</a> to go back.";
+
+        $user = $request->session()->get('user');
+        $username = $user[0]->username;
+        return redirect()->intended("/HalamanUtamaPenjual/$username");
+        // echo "Record inserted successfully.<br/>";
+        // echo "<a href = '/HalamanUtamaPenjual/$username'>Click Here</a> to go back.";
     }
 
-    public function editMenu(Menu $menu, Request $request)
+    public function editMenu(Request $request)
     {
+        $id = $request->input('idMenu');
+        $menu = Menu::find($id);
         $menu->namaMenu = $request->input('namaMenu');
         $menu->hargaMenu = $request->input('hargaMenu');
         $menu->gerai = $request->input('gerai');
 
         $menu->save();
-        return redirect()->intended("/Penjual/Menu/Edit/$menu->idmenu");
+        return redirect()->intended("/Penjual/Menu/$id");
     }
 
-    public function hapusMenu(Menu $menu)
+    public function hapusMenu(Menu $menu, Request $request)
     {
+        $user = $request->session()->get('user');
+        $username = $user[0]->username;
+        $username = 'penjual1';
+        $menu->delete();
+        // $menu->truncate();
+        return redirect()->intended("/HalamanUtamaPenjual/$username");
+
+        // echo "Record inserted successfully.<br/>";
+        // echo "<a href = '/HalamanUtamaPenjual/$username'>Click Here</a> to go back.";
     }
 }

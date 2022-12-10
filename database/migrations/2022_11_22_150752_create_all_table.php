@@ -14,43 +14,43 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pembeli', function (Blueprint $table) {
-            $table->increments('idPembeli');
+            $table->increments('id');
             $table->string('namaPembeli')->nullable();
             $table->integer('nomorMeja');
         });
         Schema::create('penjual', function (Blueprint $table) {
-            $table->increments('idPenjual');
+            $table->increments('id');
             $table->string('username', 30)->unique();
             $table->string('namaPenjual', 30);
             $table->string('password');
             // $table->integer('gerai')->unsigned();
         });
         Schema::create('gerai', function (Blueprint $table) {
-            $table->increments('idGerai');
+            $table->increments('id');
             $table->string('namaGerai', 50);
             $table->integer('penjual')->unsigned();
         });
         Schema::create('menu', function (Blueprint $table) {
-            $table->increments('idMenu');
+            $table->increments('id');
             $table->string('namaMenu', 50);
             $table->tinyInteger('stokMenu')->default(0);
             $table->double('hargaMenu');
             $table->integer('gerai')->unsigned();
         });
         Schema::create('kasir', function (Blueprint $table) {
-            $table->increments('idKasir');
+            $table->increments('id');
             $table->string('username', 30)->unique();
             $table->string('namaKasir', 30);
             $table->string('password');
         });
         Schema::create('invoice', function (Blueprint $table) {
-            $table->increments('idInvoice');
+            $table->increments('id');
             $table->integer('idPembeli')->unsigned();
             $table->integer('idKasir')->unsigned();
             $table->integer('idPenjual')->unsigned();
         });
         Schema::create('daftarpesanan', function (Blueprint $table) {
-            $table->increments('idDaftarPesanan');
+            $table->increments('id');
             $table->double('totalHarga')->default(0);
             $table->integer('gerai')->unsigned();
             $table->date('tanggalPemesanan');
@@ -60,14 +60,14 @@ return new class extends Migration
             $table->integer('kasir')->unsigned()->nullable()->default(NULL);
         });
         Schema::create('pesanan', function (Blueprint $table) {
-            $table->increments('idPesanan');
+            $table->increments('id');
             $table->integer('pesanan')->unsigned();
             $table->integer('jumlahPesanan');
             $table->tinyInteger('statusPesanan')->default(0);
             $table->integer('daftarPesanan')->unsigned();
         });
         Schema::create('laporan', function (Blueprint $table) {
-            $table->increments('idLaporan');
+            $table->increments('id');
             $table->integer('kasir')->unsigned();
             $table->double('total')->default(0);
         });

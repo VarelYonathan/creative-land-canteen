@@ -2,13 +2,17 @@
 
 @section('container')
     @isset($role)
-        <form action="/Penjual/Menu/Edit/{{ $menu->idMenu }}" method="GET">
+        {{-- <form action="/Penjual/Menu/Edit/{{ $menu->idMenu }}" method="GET"> --}}
+        <form action="/Penjual/Menu/Edit/{{ $menu->id }}" method="GET">
             <button>
                 Edit
             </button>
         </form>
-        <form>
-            <button action="/Penjual/HapusMenu/{{ $menu->idMenu }}" method="POST">
+        <br></br>
+        <form action="/Penjual/Menu/Hapus/{{ $menu->id }}" method="POST">
+            @csrf
+            {{-- <button action="/Penjual/HapusMenu/{{ $menu->idMenu }}" method="POST"> --}}
+            <button>
                 Hapus Menu
             </button>
         </form>

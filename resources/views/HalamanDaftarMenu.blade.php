@@ -11,7 +11,8 @@
 
     @foreach ($menus as $menu)
         <h5>
-            <a href="/Gerai/{{ $menu->idMenu }}">{{ $menu->namaMenu }}</a>
+            {{-- <a href="/Gerai/{{ $menu->idMenu }}">{{ $menu->namaMenu }}</a> --}}
+            <a href="/Gerai/{{ $menu->id }}">{{ $menu->namaMenu }}</a>
         </h5>
         <h5>{{ $menu->hargaMenu }}</h5>
         <br>

@@ -51,6 +51,7 @@ class LoginController extends Controller
             $request->session()->put('user', $user);
             return redirect()->intended("/HalamanUtamaPenjual/$request[username]");
         }
+        return redirect()->intended('/');
         return back()->with('loginError', "Login Failed!");
 
         dd('berhasil login!');
@@ -67,6 +68,7 @@ class LoginController extends Controller
             $request->session()->put('user', $user);
             return redirect()->intended('/HalamanUtamaKasir');
         }
+        return redirect()->intended('/');
         return back()->with('loginError', 'Login Failed!');
 
         dd('berhasil login!');

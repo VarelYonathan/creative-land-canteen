@@ -9,13 +9,13 @@ class Penjual extends Authenticatable
 {
     use HasFactory;
     public $timestamps = false;
-    protected $primarykey = 'idPenjual';
-    public $incrementing = true;
+    // protected $primarykey = 'idPenjual';
 
     protected $table = "penjual";
 
     protected $fillable = [
-        'idPenjual', 'username', 'namaPenjual', 'password'
+        // 'idPenjual', 'username', 'namaPenjual', 'password'
+        'id', 'username', 'namaPenjual', 'password'
     ];
     protected $hidden = [
         'password',

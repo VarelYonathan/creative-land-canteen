@@ -2,7 +2,6 @@
 
 @section('container')
     <h1>Halaman Utama Penjual</h1>
-
     <a href="/Penjual/TambahMenu">
         <button>
             Tambah Menu
@@ -10,7 +9,8 @@
     </a>
     @foreach ($menus as $menu)
         <h5>
-            <a href="/Penjual/Menu/{{ $menu->idMenu }}">{{ $menu->namaMenu }}</a>
+            {{-- <a href="/Penjual/Menu/{{ $menu->idMenu }}">{{ $menu->namaMenu }}</a> --}}
+            <a href="/Penjual/Menu/{{ $menu->id }}">{{ $menu->namaMenu }}</a>
         </h5>
         <h5>{{ $menu->hargaMenu }}</h5>
         <br>

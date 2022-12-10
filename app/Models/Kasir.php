@@ -11,11 +11,10 @@ class Kasir extends Authenticatable
 
     protected $table = "kasir";
     public $timestamps = false;
-    protected $primarykey = 'idKasir';
-    public $incrementing = true;
+    // protected $primarykey = 'idKasir';
 
     protected $fillable = [
-        'idKasir', 'username', 'namaKasir', 'password'
+        'id', 'username', 'namaKasir', 'password'
     ];
     protected $hidden = [
         'password',
