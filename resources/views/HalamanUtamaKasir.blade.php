@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.main')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Halaman Utama Kasir</title>
-</head>
-
-<body>
+@section('container')
+    {{-- @unless($menus->isEmpty()) --}}
     <h1>Halaman Utama Kasir</h1>
-</body>
-
-</html>
+    {{-- @foreach ($gerai as $ger)
+        <h5>
+            <a href="/HalamanUtamaPembeli/{{ $ger->idGerai }}">{{ $ger->namaGerai }}</a>
+        </h5>
+    @endforeach= --}}
+    <a href="/Logout">Logout</a>
+@endsection

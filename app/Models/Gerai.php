@@ -27,6 +27,8 @@ class Gerai extends Model
 
     protected $table = "gerai";
     public $timestamps = false;
+    protected $primarykey = 'idGerai';
+    public $incrementing = true;
 
     protected $fillable = [
         'idGerai', 'namaGerai', 'penjual'

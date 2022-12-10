@@ -11,6 +11,8 @@ class Invoice extends Model
 
     protected $table = "invoice";
     public $timestamps = false;
+    protected $primarykey = 'idInvoice';
+    public $incrementing = true;
 
     protected $fillable = [
         'idInvoice', 'idPembeli', 'idKasir', 'idPenjual'

@@ -11,6 +11,8 @@ class Pesanan extends Model
 
     protected $table = "pesanan";
     public $timestamps = false;
+    protected $primarykey = 'idPesanan';
+    public $incrementing = true;
 
     protected $fillable = [
         'idPesanan', 'pesanan', 'jumlahPesanan', 'statusPesanan', 'daftarPesanan'

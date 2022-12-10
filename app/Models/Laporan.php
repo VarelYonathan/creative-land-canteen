@@ -12,6 +12,8 @@ class Laporan extends Model
 
     protected $table = "laporan";
     public $timestamps = false;
+    protected $primarykey = 'idLaporan';
+    public $incrementing = true;
 
     protected $fillable = [
         'idLaporan', 'kasir', 'total'

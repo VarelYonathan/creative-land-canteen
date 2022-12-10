@@ -6,13 +6,14 @@ use App\Models\Gerai;
 use App\Models\Penjual;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('guest:penjual')->except('logout');
-        // $this->middleware('guest:kasir')->except('logout');
+        $this->middleware('guest:penjual')->except('logout');
+        $this->middleware('guest:kasir')->except('logout');
     }
     public function showLoginAsPenjual()
     {
@@ -46,7 +47,9 @@ class LoginController extends Controller
         if (Auth::guard('penjual')->attempt($credentials)) {
             // if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/HalamanUtamaPenjual');
+            $user = Penjual::where('username', $request->username)->get();
+            $request->session()->put('user', $user);
+            return redirect()->intended("/HalamanUtamaPenjual/$request[username]");
         }
         return back()->with('loginError', "Login Failed!");
 
@@ -60,10 +63,21 @@ class LoginController extends Controller
         ]);
         if (Auth::guard('kasir')->attempt($credentials)) {
             $request->session()->regenerate();
+            $user = Penjual::where('username', $request->username)->get();
+            $request->session()->put('user', $user);
             return redirect()->intended('/HalamanUtamaKasir');
         }
         return back()->with('loginError', 'Login Failed!');
 
         dd('berhasil login!');
+    }
+
+    public function logout()
+    {
+        Session::flush();
+
+        Auth::logout();
+
+        return redirect('/');
     }
 }

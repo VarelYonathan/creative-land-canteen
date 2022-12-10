@@ -9,6 +9,8 @@ class Penjual extends Authenticatable
 {
     use HasFactory;
     public $timestamps = false;
+    protected $primarykey = 'idPenjual';
+    public $incrementing = true;
 
     protected $table = "penjual";
 

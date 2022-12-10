@@ -10,6 +10,8 @@ class Pembeli extends Authenticatable
 {
     use HasFactory;
     public $timestamps = false;
+    protected $primarykey = 'idPembeli';
+    public $incrementing = true;
 
     protected $table = "pembeli";
 

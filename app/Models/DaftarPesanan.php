@@ -10,8 +10,9 @@ class DaftarPesanan extends Model
     use HasFactory;
 
     protected $table = "daftarpesanan";
+    protected $primarykey = 'idDaftarPesanan';
     public $timestamps = false;
-
+    public $incrementing = true;
     protected $fillable = [
         'idDaftarPesanan', 'totalHarga', 'gerai', 'tanggalPemesanan', 'invoice', 'statusPembayaran', 'pembeli', 'kasir'
     ];
