@@ -10,7 +10,7 @@ class Kasir extends Authenticatable
     use HasFactory;
 
     protected $table = "kasir";
-    public $timestamps = false;
+    // public $timestamps = false;
     // protected $primarykey = 'idKasir';
 
     protected $fillable = [

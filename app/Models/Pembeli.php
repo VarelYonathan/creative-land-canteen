@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Pembeli extends Authenticatable
 {
     use HasFactory;
-    public $timestamps = false;
+    // public $timestamps = false;
     // protected $primarykey = 'idPembeli';
 
     protected $table = "pembeli";

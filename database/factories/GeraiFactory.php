@@ -18,7 +18,8 @@ class GeraiFactory extends Factory
     {
         return [
             'namaGerai' => fake()->numerify('gerai-#'),
-            'penjual' => mt_rand(1, 2)
+            'penjual' => mt_rand(1, 2),
+            'status' => mt_rand(0, 1)
         ];
     }
 }

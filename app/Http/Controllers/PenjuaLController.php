@@ -81,9 +81,6 @@ class PenjualController extends Controller
         DB::table('menu')->insert($data);
         $user = $request->session()->get('user');
         $username = $user[0]->username;
-
-        $user = $request->session()->get('user');
-        $username = $user[0]->username;
         return redirect()->intended("/HalamanUtamaPenjual/$username");
         // echo "Record inserted successfully.<br/>";
         // echo "<a href = '/HalamanUtamaPenjual/$username'>Click Here</a> to go back.";
@@ -107,10 +104,6 @@ class PenjualController extends Controller
         $username = $user[0]->username;
         $username = 'penjual1';
         $menu->delete();
-        // $menu->truncate();
         return redirect()->intended("/HalamanUtamaPenjual/$username");
-
-        // echo "Record inserted successfully.<br/>";
-        // echo "<a href = '/HalamanUtamaPenjual/$username'>Click Here</a> to go back.";
     }
 }

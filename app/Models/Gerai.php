@@ -8,29 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Gerai extends Model
 {
     use HasFactory;
-    // private static $daftarMenu = [
-    //     [
-    //         "nama" => "Nasi Goreng",
-    //         "slug" => "nasi-goreng",
-    //         "harga" => "Rp. 10.000",
-    //         "stok" => "Tersedia",
-    //         "image" => "img/makanan.jpeg"
-    //     ],
-    //     [
-    //         "nama" => "Nasi Goreng Spesial",
-    //         "slug" => "nasi-goreng-spesial",
-    //         "harga" => "Rp. 20.000",
-    //         "stok" => "Tersedia",
-    //         "image" => "img/makanan.jpeg"
-    //     ],
-    // ];
 
     protected $table = "gerai";
-    public $timestamps = false;
+    // public $timestamps = false;
     // protected $primarykey = 'idGerai';
 
     protected $fillable = [
-        'id', 'namaGerai', 'penjual'
+        'id', 'namaGerai', 'penjual', 'status'
     ];
 
     public function penjual()

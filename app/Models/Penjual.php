@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Penjual extends Authenticatable
 {
     use HasFactory;
-    public $timestamps = false;
+    // public $timestamps = false;
     // protected $primarykey = 'idPenjual';
 
     protected $table = "penjual";

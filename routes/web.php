@@ -45,7 +45,11 @@ Route::post('/Login/kasir', [LoginController::class, 'loginAsKasir']);
 #Halaman Utama Pembeli
 Route::get('/Gerai', [PembeliController::class, 'index']);
 // Route::get('Gerai/{menu:idMenu}', [PembeliController::class, 'showMenu']);
-Route::get('Gerai/{menu:id}', [PembeliController::class, 'showMenu']);
+Route::get('/Gerai/{menu:id}', [PembeliController::class, 'showMenu']);
+Route::post('/Gerai/Keranjang', [PembeliController::class, 'showKeranjang']);
+Route::post('/Gerai/Pesan', [PembeliController::class, 'pesan']);
+Route::get('/Gerai/Pembayaran/{DaftarPesanan:id}', [PembeliController::class, 'showMenu']);
+Route::post('/Gerai/Pembayaran/{DaftarPesanan:id}', [PembeliController::class, 'bayar']);
 
 #Halaman Utama Penjual
 Route::get('/HalamanUtamaPenjual/{penjual:username}', [PenjualController::class, 'showHalamanUtamaPenjual']);

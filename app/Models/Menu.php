@@ -11,7 +11,7 @@ class Menu extends Model
 
     protected $table = "menu";
     // protected $primarykey = 'idMenu';
-    public $timestamps = false;
+    // public $timestamps = false;
 
     protected $fillable = [
         'id', 'namaMenu', 'stokMenu', 'hargaMenu', 'gerai'
