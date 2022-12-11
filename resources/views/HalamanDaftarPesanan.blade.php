@@ -33,14 +33,14 @@
                 readonly>
         @endforeach
         <label for="total">Total Menu: </label>
-        <input type=number id="totalMenu" name="totalMenu" value={{ $i + 1 }} readonly>
+        <input type=number id="totalMenu" name="totalMenu" value={{ $i }} readonly>
         <br>
-        @isset($pesan)
+        @if ($pesan === 1)
             <button>
                 Pesan
             </button>
         @else
             <h5>Belum memesan</h5>
-        @endisset
+        @endif
     </form>
 @endsection

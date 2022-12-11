@@ -11,13 +11,14 @@
         {{-- <input type="text" id="idMenu" name="idMenu" value="{{ $menu->idMenu }}" readonly><br><br> --}}
         <input type="text" id="idMenu" name="idMenu" value="{{ $menu->id }}" readonly><br><br>
         <label for="nama">Nama Menu:</label>
-        <input type="text" id="namaMenu" name="namaMenu" value="{{ $menu->namaMenu }}"><br><br>
+        <input type="text" id="namaMenu" name="namaMenu" value="{{ $menu->namaMenu }}" required><br><br>
         <label for="stok">Stok Menu:</label>
-        <input type="number" id="stokMenu" name="stokMenu" value="{{ $menu->stokMenu }}"> "0 untuk menandakan bahwa menu
+        <input type="number" id="stokMenu" name="stokMenu"min=0 max=1 value="{{ $menu->stokMenu }}"> "0 untuk menandakan
+        bahwa menu
         tidak tersedia, 1 untuk tersedia"
         <br><br>
         <label for="stok">Harga Menu:</label>
-        <input type="number" id="hargaMenu" name="hargaMenu" value="{{ $menu->hargaMenu }}"><br><br>
+        <input type="number" id="hargaMenu" min=0 name="hargaMenu" value="{{ $menu->hargaMenu }}" required><br><br>
         <label for="stok">Gerai:</label>
         <input type="number" id="gerai" name="gerai" value="{{ $menu->gerai }}" readonly><br><br>
         <input type="submit" value="Edit">

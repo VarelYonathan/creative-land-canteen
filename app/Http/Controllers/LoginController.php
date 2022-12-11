@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Gerai;
 use App\Models\Penjual;
+use App\Models\Kasir;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -49,7 +50,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
             $user = Penjual::where('username', $request->username)->get();
             $request->session()->put('user', $user);
-            return redirect()->intended("/HalamanUtamaPenjual/$request[username]");
+            return redirect()->intended("/HalamanUtamaPenjual");
         }
         return redirect()->intended('/');
         return back()->with('loginError', "Login Failed!");
@@ -64,7 +65,7 @@ class LoginController extends Controller
         ]);
         if (Auth::guard('kasir')->attempt($credentials)) {
             $request->session()->regenerate();
-            $user = Penjual::where('username', $request->username)->get();
+            $user = Kasir::where('username', $request->username)->get();
             $request->session()->put('user', $user);
             return redirect()->intended('/HalamanUtamaKasir');
         }

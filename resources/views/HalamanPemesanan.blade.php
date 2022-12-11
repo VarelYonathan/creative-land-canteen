@@ -1,15 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.main')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Halaman Pemesanan</title>
-</head>
+@section('container')
+    @foreach ($pesanan as $p)
+        <form action="/Penjual/DaftarPesanan/SelesaikanPesanan/{{ $p->pid }}" method="POST">
+            @csrf
+            <label for="id">Id Daftar Pesanan : </label>
+            <input type="number" id="idDaftarPesanan" name="idDaftarPesanan" value={{ $p->daftarPesanan }} readonly>
+            <h5>
+                Nama : {{ $p->namaMenu }}
+            </h5>
+            <h5>
+                Jumlah Pesanan : {{ $p->jumlahPesanan }}
+            </h5>
+            <h5>
+                @if ($p->statusPesanan === 1)
+                    Status Pesanan : Selesai
+                @else
+                    Status Pesanan : Belum Selesai
+                @endif
+            </h5>
+            {{-- <form action="/Penjual/DaftarPesanan/SelesaikanPesanan/{{ $p->daftarPesanan }}/{{ $p->id }}" method="POST"> --}}
 
-<body>
-    <h1>Halaman Pemesanan</h1>
-</body>
+            @if ($p->statusPesanan === 0)
+                <button>
+                    Selesaikan Pesanan
+                </button>
+            @endif
+        </form>
+    @endforeach
 
-</html>
+    <form action="/Penjual/DaftarPesanan/" method="GET">
+        <button>
+            Kembali
+        </button>
+    </form>
+@endsection

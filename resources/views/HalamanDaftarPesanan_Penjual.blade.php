@@ -3,14 +3,14 @@
 @section('container')
     @foreach ($daftarPesanan as $dp)
         <h5>
-            <a href="/Kasir/DaftarPesanan/{{ $dp->id }}">Daftar Pesanan
+            <a href="/Penjual/DaftarPesanan/{{ $dp->id }}">Daftar Pesanan
                 {{ $dp->id }}-{{ $dp->namaPembeli }}-{{ $dp->nomorMeja }}</a>
         </h5>
     @endforeach
-    <br>
-    <form action="/Kasir/Keuangan">
+
+    <form action="/HalamanUtamaPenjual" method="GET">
         <button>
-            Keuangan
+            Kembali
         </button>
     </form>
 @endsection

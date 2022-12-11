@@ -90,7 +90,7 @@ class PembeliController extends Controller
         $id[] = array();
         $kuantitas[] = array();
         $menus[] =  array();
-        $item = $request->input('totalMenu') - 1;
+        $item = $request->input('totalMenu');
         for ($i = 0; $i < $item; $i++) {
             $idInputId = "id$i";
             $idInputKuantitas = "jumlahPesanan$i";
@@ -148,7 +148,7 @@ class PembeliController extends Controller
         $dp = DaftarPesanan::where('pembeli', $user->id)->get();
         $idDaftarPesanan = $dp[0]->id;
         $harga = [];
-        for ($i = 1; $i < $item + 1; $i++) {
+        for ($i = 1; $i < $item; $i++) {
             $pesanan = array(
                 'pesanan' => $id[$i],
                 'jumlahPesanan' => $kuantitas[$i],
@@ -170,6 +170,14 @@ class PembeliController extends Controller
         $dp[0]->save();
 
         return redirect()->intended("/Gerai/Pembayaran/$idDaftarPesanan");
+    }
+
+    public function showHalamanPembayaran(DaftarPesanan $daftarPesanan)
+    {
+        return view('HalamanPembayaran', [
+            'title' => "Halaman Pembayaran",
+            'daftarPesanan' => $daftarPesanan->id
+        ]);
     }
 
     public function bayar(DaftarPesanan $daftarPesanan)

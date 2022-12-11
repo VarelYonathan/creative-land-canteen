@@ -21,4 +21,8 @@ class Menu extends Model
     {
         return $this->belongsTo(Gerai::class, 'gerai');
     }
+    public function pesanan()
+    {
+        return $this->belongsTo(Pesanan::class);
+    }
 }

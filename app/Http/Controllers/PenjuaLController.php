@@ -5,25 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Gerai;
 use App\Models\Menu;
 use App\Models\Penjual;
+use App\Models\DaftarPesanan;
+use App\Models\Pesanan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class PenjualController extends Controller
 {
-    public function showHalamanUtamaPenjual(Penjual $penjual, Request $request)
+    // public function showHalamanUtamaPenjual(Penjual $penjual, Request $request)
+    public function showHalamanUtamaPenjual(Request $request)
     {
-        // $gerai = Gerai::where('penjual', $penjual->idPenjual)->get();
-        // $menu = [];
-        // $i = 0;
-        // foreach ($gerai as $g) {
-        //     $m = Menu::where('gerai', $gerai[$i]->idGerai)->get();
-        //     ++$i;
-        //     foreach ($m as $me) {
-        //         $menu[] = $me;
-        //     }
-        // }
-
-        $gerai = Gerai::where('penjual', $penjual->id)->get();
+        $penjual = $request->session()->get('user');
+        $gerai = Gerai::where('penjual', $penjual[0]->id)->get();
+        // $gerai = Gerai::where('penjual', $penjual->id)->get();
         $menu = [];
         $i = 0;
         foreach ($gerai as $g) {
@@ -36,7 +30,6 @@ class PenjualController extends Controller
         $request->session()->put('gerai', $gerai);
         return view('HalamanUtamaPenjual', [
             'title' => "Halaman Utama Penjual",
-            // "menus" => Menu::where('gerai', $gerai[0]->idGerai)->get(),
             "menus" => $menu,
             "image" => "makanan.jpeg"
         ]);
@@ -56,9 +49,9 @@ class PenjualController extends Controller
         // $m = $request->session()->put('menu', $menu);
         return view('HalamanModifikasiMenu', [
             'title' => "Halaman Edit Menu",
-            'menu' => $menu,
+            'menu' => $menu
             // 'idMenu' => $request->session()->get('menu')
-            'idMenu' => 1
+            // 'idMenu' => 1
         ]);
     }
 
@@ -79,31 +72,64 @@ class PenjualController extends Controller
         $gerai = $request->input('gerai');
         $data = array('namaMenu' => $nama, "stokMenu" => 0, "hargaMenu" => $harga, "gerai" => $gerai);
         DB::table('menu')->insert($data);
-        $user = $request->session()->get('user');
-        $username = $user[0]->username;
-        return redirect()->intended("/HalamanUtamaPenjual/$username");
-        // echo "Record inserted successfully.<br/>";
-        // echo "<a href = '/HalamanUtamaPenjual/$username'>Click Here</a> to go back.";
+        return redirect()->intended("/HalamanUtamaPenjual");
     }
 
     public function editMenu(Request $request)
     {
-        $id = $request->input('idMenu');
-        $menu = Menu::find($id);
-        $menu->namaMenu = $request->input('namaMenu');
-        $menu->hargaMenu = $request->input('hargaMenu');
-        $menu->gerai = $request->input('gerai');
-
-        $menu->save();
-        return redirect()->intended("/Penjual/Menu/$id");
+        try {
+            $id = $request->input('idMenu');
+            $menu = Menu::find($id);
+            $menu->namaMenu = $request->input('namaMenu');
+            $menu->hargaMenu = $request->input('hargaMenu');
+            $menu->gerai = $request->input('gerai');
+            $menu->save();
+            return redirect()->intended("/Penjual/Menu/$id");
+        } catch (\Exception $e) {
+            report($e);
+            return redirect()->intended("/HalamanUtamaPenjual");
+        }
     }
 
     public function hapusMenu(Menu $menu, Request $request)
     {
-        $user = $request->session()->get('user');
-        $username = $user[0]->username;
-        $username = 'penjual1';
-        $menu->delete();
-        return redirect()->intended("/HalamanUtamaPenjual/$username");
+        try {
+            $menu->delete();
+            return redirect()->intended("/HalamanUtamaPenjual");
+        } catch (\Exception $e) {
+            report($e);
+            return redirect()->intended("/HalamanUtamaPenjual");
+        }
+    }
+
+    public function showDaftarPesanan()
+    {
+        $daftarPesanan = DaftarPesanan::where('konfirmasi', 0)->leftJoin('pembeli', 'pembeli', '=', 'pembeli.id')->get();
+        // $daftarPesanan = DB::select("Select * from daftarpesanan where konfirmasi = 1");
+        return view('HalamanDaftarPesanan_Penjual', [
+            'title' => "Halaman Daftar Pesanan",
+            'daftarPesanan' => $daftarPesanan
+        ]);
+    }
+
+    public function showPesanan(DaftarPesanan $daftarPesanan)
+    {
+        $pesanan = DB::select("Select namaMenu,jumlahPesanan,statusPesanan,daftarPesanan,pesanan.id as pid from `pesanan` join `menu` on pesanan = menu.id where `daftarPesanan` = $daftarPesanan->id");
+
+        return view('HalamanPemesanan', [
+            "title" => "Halaman Pesanan",
+            'pesanan' => $pesanan
+        ]);
+    }
+
+    public function selesaikanPesanan(Request $request, Pesanan $pesanan)
+    // public function selesaikanPesanan(DaftarPesanan $daftarPesanan, Pesanan $pesanan)
+    {
+        $daftarPesanan = $request->input('idDaftarPesanan');
+        // print_r($pesanan->id);
+        $pesanan->statusPesanan = 1;
+        $pesanan->save();
+
+        return redirect()->intended("/Penjual/DaftarPesanan/$daftarPesanan");
     }
 }

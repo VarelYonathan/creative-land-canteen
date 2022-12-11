@@ -21,7 +21,8 @@ class Pesanan extends Model
     public function daftarPesanan()
     {
         // return $this->belongsTo(DaftarPesanan::class, 'daftarPesanan');
-        return $this->belongsTo(DaftarPesanan::class, 'daftarPesanan');
+        // return $this->belongsTo(DaftarPesanan::class, 'daftarPesanan');
+        return $this->belongsTo(DaftarPesanan::class);
     }
     public function menu()
     {

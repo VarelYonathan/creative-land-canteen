@@ -17,17 +17,13 @@ class DaftarPesanan extends Model
     protected $fillable = [
         // 'id', 'totalHarga', 'gerai', 'tanggalPemesanan', 'invoice', 'statusPembayaran', 'pembeli', 'kasir'
         // 'id', 'totalHarga', 'gerai', 'tanggalPemesanan', 'invoice', 'statusPembayaran', 'konfirmasi'
-        'id', 'totalHarga', 'gerai', 'invoice', 'statusPembayaran', 'konfirmasi'
+        'id', 'totalHarga', 'gerai', 'invoice', 'statusPembayaran', 'konfirmasi', 'pembeli'
     ];
-
-    public function store($id, $nama, $harga)
-    {
-        Cart::add($id, $nama, 1, $harga)->associate('App\Models\Pesanan;');
-    }
 
     public function pesanan()
     {
         // return $this->hasMany(Pesanan::class, 'idDaftarPesanan', 'daftarPesanan');
+        // return $this->hasMany(Pesanan::class, 'daftarPesanan');
         return $this->hasMany(Pesanan::class, 'daftarPesanan');
     }
 
@@ -41,7 +37,8 @@ class DaftarPesanan extends Model
     }
     public function pembeli()
     {
-        return $this->belongsTo(Pembeli::class, 'pembeli');
+        // return $this->belongsTo(Pembeli::class, 'pembeli');
+        return $this->belongsTo(Pembeli::class);
     }
     // public function kasir()
     // {

@@ -25,6 +25,7 @@ class Pembeli extends Authenticatable
     public function daftarPesanan()
     {
         // return $this->hasMany(DaftarPesanan::class, 'idPembeli', 'pembeli');
-        return $this->hasMany(DaftarPesanan::class, 'pembeli');
+        // return $this->hasMany(DaftarPesanan::class, 'pembeli');
+        return $this->hasMany(DaftarPesanan::class);
     }
 }

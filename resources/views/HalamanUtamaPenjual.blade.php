@@ -1,7 +1,12 @@
 @extends('layouts.main')
 
 @section('container')
-    <h1>Halaman Utama Penjual</h1>
+    <form action="/Penjual/DaftarPesanan" method="GET">
+        <button>
+            Daftar Pesanan
+        </button>
+    </form>
+
     <a href="/Penjual/TambahMenu">
         <button>
             Tambah Menu
@@ -20,6 +25,5 @@
             <h5>Tidak Tersedia</h5>
         @endif
         <img src="img/{{ $image }}" alt={{ $menu->namaMenu }}>
-    @endforeach=
-    <a href="/Logout">Logout</a>
+    @endforeach
 @endsection

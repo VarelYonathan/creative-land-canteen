@@ -26,7 +26,7 @@
                 required><br><br>
         @else
             <label for="nama">Nomor Meja:</label>
-            <input type="number" id="nomorMeja" name="nomorMeja" placeholder="Nomor Meja" required><br><br>
+            <input type="number" id="nomorMeja" name="nomorMeja" placeholder="Nomor Meja" min=0 required><br><br>
         @endisset
         @foreach ($menus as $menu)
             <h5>

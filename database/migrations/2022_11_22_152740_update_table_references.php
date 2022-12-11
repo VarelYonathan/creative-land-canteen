@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::table('daftarpesanan', function (Blueprint $table) {
             $table->foreign('invoice')->references('id')->on('invoice')->onDelete('cascade');
+            $table->foreign('gerai')->references('id')->on('gerai')->onDelete('cascade');
             $table->foreign('pembeli')->references('id')->on('pembeli')->onDelete('cascade');
             // $table->foreign('kasir')->references('id')->on('kasir')->onDelete('cascade');
         });
