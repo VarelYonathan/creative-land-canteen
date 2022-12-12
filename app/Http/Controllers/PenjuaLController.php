@@ -27,11 +27,16 @@ class PenjualController extends Controller
                 $menu[] = $me;
             }
         }
+        $kosong = 0;
+        if ($i < 2) {
+            $kosong = 1;
+        }
         $request->session()->put('gerai', $gerai);
         return view('HalamanUtamaPenjual', [
             'title' => "Halaman Utama Penjual",
             "menus" => $menu,
-            "image" => "makanan.jpeg"
+            "image" => "makanan.jpeg",
+            'kosong' => $kosong
         ]);
     }
 
@@ -46,12 +51,10 @@ class PenjualController extends Controller
 
     public function showHalamanEditMenu(Menu $menu, Request $request)
     {
-        // $m = $request->session()->put('menu', $menu);
+        $request->session()->put('menu', $menu);
         return view('HalamanModifikasiMenu', [
             'title' => "Halaman Edit Menu",
             'menu' => $menu
-            // 'idMenu' => $request->session()->get('menu')
-            // 'idMenu' => 1
         ]);
     }
 
@@ -88,6 +91,7 @@ class PenjualController extends Controller
         } catch (\Exception $e) {
             report($e);
             return redirect()->intended("/HalamanUtamaPenjual");
+            return back()->with('editError', "Error pada saat mengedit menu!");
         }
     }
 

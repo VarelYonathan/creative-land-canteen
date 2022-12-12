@@ -5,7 +5,6 @@
     {{-- <form action="/Penjual/Menu/Edit/{{ $menu->idMenu }}" method="POST"> --}}
     <form action="/Penjual/Menu/Edit/{{ $menu->id }}" method="POST">
         @csrf
-        <h1>{{ $menu->id }}</h1>
         {{-- <h1>{{ $menu->idMenu }}</h1> --}}
         <label for="id">Id Menu:</label>
         {{-- <input type="text" id="idMenu" name="idMenu" value="{{ $menu->idMenu }}" readonly><br><br> --}}
@@ -22,5 +21,11 @@
         <label for="stok">Gerai:</label>
         <input type="number" id="gerai" name="gerai" value="{{ $menu->gerai }}" readonly><br><br>
         <input type="submit" value="Edit">
+    </form>
+
+    <form action="/Penjual/Menu/{{ $menu->id }}" method="GET">
+        <button>
+            Kembali
+        </button>
     </form>
 @endsection

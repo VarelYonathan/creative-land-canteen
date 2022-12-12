@@ -30,5 +30,11 @@
         <h5>Tidak Tersedia</h5>
     @endif
     {{-- <img src={{ $menu->image }} alt={{ $menu->namaMenu }}> --}}
-    <img src="img/{{ $image }}" alt={{ $menu->namaMenu }}>
+    <img src="/img/{{ $image }}" alt={{ $menu->namaMenu }}>
+
+    <form action="/HalamanUtamaPenjual" method="GET">
+        <button>
+            Kembali
+        </button>
+    </form>
 @endsection

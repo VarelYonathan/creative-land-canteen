@@ -1,6 +1,12 @@
 @extends('layouts.main')
 
 @section('container')
+    @if (session()->has('editError'))
+        <div class="alert-danger alert-dismissible fade show" role="alert">
+            {{ session('editError') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <form action="/Penjual/DaftarPesanan" method="GET">
         <button>
             Daftar Pesanan
@@ -12,6 +18,11 @@
             Tambah Menu
         </button>
     </a>
+
+    {{-- <h4>{{ $kosong }}</h4> --}}
+    @if ($kosong === 1)
+        <h4>Gerai Kosong</h4>
+    @endif
     @foreach ($menus as $menu)
         <h5>
             {{-- <a href="/Penjual/Menu/{{ $menu->idMenu }}">{{ $menu->namaMenu }}</a> --}}

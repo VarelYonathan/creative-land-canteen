@@ -12,4 +12,10 @@
         <input type="number" id="gerai" name="gerai" value="{{ $gerai }}" readonly><br><br>
         <input type="submit" value="Tambah">
     </form>
+
+    <form action="/HalamanUtamaPenjual" method="GET">
+        <button>
+            Kembali
+        </button>
+    </form>
 @endsection
