@@ -16,7 +16,7 @@ class hapusMenuTest extends TestCase
      */
     public function test1()
     {
-        $id = 11;
+        $id = 12;
         $res = $this->post("/Penjual/Menu/Hapus/$id");
         $res->assertRedirect("/HalamanUtamaPenjual");
     }

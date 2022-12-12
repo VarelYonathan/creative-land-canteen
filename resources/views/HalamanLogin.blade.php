@@ -10,7 +10,6 @@
         @endif
         @isset($url)
             <form action='{{ url("/Login/$url") }}' method="POST">
-                <h1>{{ $url }}</h1>
             @else
                 <form action="/" method="POST">
                 @endisset

@@ -22,13 +22,13 @@ class PenjualController extends Controller
         $i = 0;
         foreach ($gerai as $g) {
             $m = Menu::where('gerai', $gerai[$i]->id)->get();
-            ++$i;
             foreach ($m as $me) {
+                ++$i;
                 $menu[] = $me;
             }
         }
         $kosong = 0;
-        if ($i < 2) {
+        if ($i < 1) {
             $kosong = 1;
         }
         $request->session()->put('gerai', $gerai);
@@ -73,7 +73,14 @@ class PenjualController extends Controller
         $nama = $request->input('namaMenu');
         $harga = $request->input('hargaMenu');
         $gerai = $request->input('gerai');
-        $data = array('namaMenu' => $nama, "stokMenu" => 0, "hargaMenu" => $harga, "gerai" => $gerai);
+        $data = array(
+            'namaMenu' => $nama,
+            "stokMenu" => 0,
+            "hargaMenu" => $harga,
+            "gerai" => $gerai,
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+        );
         DB::table('menu')->insert($data);
         return redirect()->intended("/HalamanUtamaPenjual");
     }
@@ -108,8 +115,12 @@ class PenjualController extends Controller
 
     public function showDaftarPesanan()
     {
-        $daftarPesanan = DaftarPesanan::where('konfirmasi', 0)->leftJoin('pembeli', 'pembeli', '=', 'pembeli.id')->get();
+
+        // $daftarPesanan = DaftarPesanan::where('konfirmasi', 1)->leftJoin('pembeli', 'pembeli', '=', 'pembeli.id')->get();
         // $daftarPesanan = DB::select("Select * from daftarpesanan where konfirmasi = 1");
+
+        $query = "Select *, daftarPesanan.id as dfid from daftarPesanan join pembeli on pembeli = pembeli.id  where konfirmasi = 1 ORDER BY dfid";
+        $daftarPesanan = DB::select($query);
         return view('HalamanDaftarPesanan_Penjual', [
             'title' => "Halaman Daftar Pesanan",
             'daftarPesanan' => $daftarPesanan

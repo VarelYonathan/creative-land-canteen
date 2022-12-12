@@ -12,7 +12,10 @@ class KasirController extends Controller
 {
     public function showHalamanUtamaKasir(Request $request)
     {
-        $daftarPesanan = DaftarPesanan::where('konfirmasi', 0)->leftJoin('pembeli', 'pembeli', '=', 'pembeli.id')->get();
+
+        $query = "Select *, daftarPesanan.id as dfid from daftarPesanan join pembeli on pembeli = pembeli.id  where konfirmasi = 0 ORDER BY dfid";
+        $daftarPesanan = DB::select($query);
+
         return view('HalamanUtamaKasir', [
             'title' => "Halaman Utama Kasir",
             'daftarPesanan' => $daftarPesanan
@@ -23,7 +26,7 @@ class KasirController extends Controller
     {
         $pembeli = Pembeli::where("id", $daftarPesanan->pembeli)->first();
         return view('HalamanDaftarPesanan_Kasir', [
-            'title' => "Halaman Daftar Menu",
+            'title' => "Halaman Daftar Pesanan",
             'namaPembeli' => $pembeli->namaPembeli,
             'nomorMeja' => $pembeli->nomorMeja,
             'daftarPesanan' => $daftarPesanan
@@ -36,11 +39,11 @@ class KasirController extends Controller
         $username = $user[0]->username;
         $daftarPesanan->konfirmasi = 1;
         $daftarPesanan->save();
-        $invoice = Invoice::find($daftarPesanan->id)->get();
-        $invoice->idKasir = $user->id;
+        $invoice = Invoice::find($daftarPesanan->id)->first();
+        $invoice->idKasir = $user[0]->id;
         $invoice->save();
 
-        return redirect()->intended("/HalamanUtamaKasir/$username");
+        return redirect()->intended("/HalamanUtamaKasir");
     }
 
     public function kelolaKeuangan()
