@@ -60,14 +60,14 @@
                         Hapus Menu
                     </button>
                 </form>
-                <form action="/HalamanUtamaPenjual" class="col" method="GET">
+                <form action="/HalamanUtamaPembeli" class="col" method="GET">
                     <button class="btn btn-primary">
                         Kembali
                     </button>
                 </form>
             </div>
         @else
-            <form action="/HalamanUtamaPenjual" method="GET">
+            <form action="/HalamanUtamaPembeli" method="GET">
                 <button class="btn btn-primary">
                     Kembali
                 </button>

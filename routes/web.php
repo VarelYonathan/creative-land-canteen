@@ -48,8 +48,11 @@ Route::get('/HalamanUtamaPembeli/{gerai:id}', [PembeliController::class, 'showDa
 Route::get('/Gerai/{menu:id}', [PembeliController::class, 'showMenu']);
 Route::post('/Gerai/Keranjang', [PembeliController::class, 'showKeranjang']);
 Route::post('/Gerai/Pesan', [PembeliController::class, 'pesan']);
-Route::get('/Gerai/Pembayaran/{DaftarPesanan:id}', [PembeliController::class, 'showHalamanPembayaran']);
-Route::post('/Gerai/Pembayaran/Bayar/{DaftarPesanan:id}', [PembeliController::class, 'bayar']);
+// Route::get('/Gerai/Pembayaran/{DaftarPesanan:id}', [PembeliController::class, 'showHalamanPembayaran']);
+Route::get('/Gerai/Pembayaran/{id}', [PembeliController::class, 'showHalamanPembayaran']);
+// Route::post('/Gerai/Pembayaran/Bayar/{DaftarPesanan:id}', [PembeliController::class, 'bayar']);
+Route::post('/Gerai/Pembayaran/Bayar/{id}', [PembeliController::class, 'bayar']);
+Route::post('/Pesanan', [PembeliController::class, 'cekPesanan']);
 
 #Kasir
 Route::get('/HalamanUtamaKasir', [KasirController::class, 'showHalamanUtamaKasir']);

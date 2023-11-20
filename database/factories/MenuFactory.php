@@ -20,7 +20,7 @@ class MenuFactory extends Factory
             'namaMenu' => fake()->numerify('makanan-#'),
             'stokMenu' => mt_rand(0, 1),
             'hargaMenu' => mt_rand(8000, 20000),
-            'gerai' => mt_rand(1, 2)
+            'gerai' => mt_rand(1, 1)
         ];
     }
 }

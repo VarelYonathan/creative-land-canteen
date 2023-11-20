@@ -26,7 +26,7 @@ class halamanUtamaPenjualTest extends TestCase
     public function test_2()
     {
         $res = $this->post('/Login/penjual', [
-            'username'     => "penjual1",
+            'username'     => "penjual2",
             'password'  => 'password',
         ]);
         $res->assertRedirect("/HalamanUtamaPenjual");

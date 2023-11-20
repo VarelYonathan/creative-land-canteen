@@ -39,10 +39,9 @@
                             <div class="col-sm-10">
                                 @if ($p->statusPesanan === 1)
                                     <input type="text" id="status" class="form-control-plaintext" name="status"
-                                        value={{ 'Status Pesanan : Selesai' }} readonly>
+                                        value={{ 'Selesai' }} readonly>
                                 @else
-                                    <input type="text" id="status" name="status"
-                                        value={{ 'Status Pesanan : Belum Selesai' }} readonly>
+                                    <input type="text" id="status" name="status" value={{ 'Belum' }} readonly>
                                 @endif
                             </div>
                         </div>

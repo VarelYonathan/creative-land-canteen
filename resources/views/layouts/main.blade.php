@@ -21,14 +21,12 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     @if (session()->has('user'))
-                        {{-- <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li> --}}
-                        {{-- <li class="nav-item">
-                            <a class="nav-link" href="#">Features</a>
-                        </li> --}}
                         <li class="nav-item">
                             <a class="nav-link" href="/Logout">Logout</a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Logout">Halaman Awal</a>
                         </li>
                     @endif
                 </ul>

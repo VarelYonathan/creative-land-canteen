@@ -39,7 +39,8 @@ class KasirController extends Controller
         $username = $user[0]->username;
         $daftarPesanan->konfirmasi = 1;
         $daftarPesanan->save();
-        $invoice = Invoice::find($daftarPesanan->id)->first();
+        // $query = "select * fro invoice where daftarPesanan";
+        $invoice = Invoice::find($daftarPesanan->invoice)->first();
         $invoice->idKasir = $user[0]->id;
         $invoice->save();
 

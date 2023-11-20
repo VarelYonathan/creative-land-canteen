@@ -117,8 +117,6 @@ class PembeliController extends Controller
         $user = DB::table('pembeli')->latest('created_at')->first();
         $gerai = $request->session()->get('gerai');
         $penjual = Penjual::where('id', $gerai->penjual)->get();
-        // print_r($user->id);
-        // print_r($gerai->id);
 
         // #insert invoice
         $idPembeli = $user->id;
@@ -148,7 +146,7 @@ class PembeliController extends Controller
         $dp = DaftarPesanan::where('pembeli', $user->id)->get();
         $idDaftarPesanan = $dp[0]->id;
         $harga = [];
-        for ($i = 1; $i < $item; $i++) {
+        for ($i = 1; $i < $item + 1; $i++) {
             $pesanan = array(
                 'pesanan' => $id[$i],
                 'jumlahPesanan' => $kuantitas[$i],
@@ -172,19 +170,38 @@ class PembeliController extends Controller
         return redirect()->intended("/Gerai/Pembayaran/$idDaftarPesanan");
     }
 
-    public function showHalamanPembayaran(DaftarPesanan $daftarPesanan)
+    public function showHalamanPembayaran(int $id)
     {
+        $daftarPesanan = DaftarPesanan::find($id);
+        // print_r($daftarPesanan->id);
         return view('HalamanPembayaran', [
             'title' => "Halaman Pembayaran",
             'daftarPesanan' => $daftarPesanan->id
         ]);
     }
 
-    public function bayar(DaftarPesanan $daftarPesanan)
+    public function bayar(int $id)
     {
-        $daftarPesanan->statusPembayaran = 1;
-        $daftarPesanan->save();
+        // $daftarPesanan->statusPembayaran = 1;
+        // $daftarPesanan->save();
+        $query = ("Update daftarpesanan set statusPembayaran = 1 where id = $id");
+        DB::update($query);
 
-        return redirect()->intended("/Gerai");
+        // return redirect()->intended("/Gerai");
+        return redirect()->intended("/HalamanUtamaPembeli");
+
+        return back()->with('pesan', "Berhasil memesan! ID pesanan anda adalah $id");
+    }
+
+    public function cekPesanan(Request $request)
+    {
+        $daftarPesanan = $request->input("idDaftarPesanan");
+        $pesanan = DB::select("Select namaMenu,jumlahPesanan,statusPesanan,daftarPesanan,pesanan.id as pid from `pesanan` join `menu` on pesanan = menu.id where `daftarPesanan` = $daftarPesanan");
+        // $pesanan = DB::select("Select * from pesanan where daftarPesanan = $daftarPesanan");
+        return view('HalamanCekPesanan', [
+            'title' => "Halaman Pesanan",
+            'daftarPesanan' => $daftarPesanan,
+            'pesanan' => $pesanan
+        ]);
     }
 }

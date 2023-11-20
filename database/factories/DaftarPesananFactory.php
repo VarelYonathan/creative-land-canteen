@@ -19,7 +19,7 @@ class DaftarPesananFactory extends Factory
     {
         return [
             'totalHarga' => mt_rand(8000, 40000),
-            'gerai' => mt_rand(1, 2),
+            'gerai' => mt_rand(1, 1),
             // 'tanggalPemesanan' => fake()->DateTime(),
             'invoice' => mt_rand(1, 4),
             'statusPembayaran' => mt_rand(0, 1),
